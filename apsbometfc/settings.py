@@ -40,7 +40,7 @@ MPESA_CALLBACK_URL = os.getenv("MPESA_CALLBACK_URL", "").strip()
 SECRET_KEY = 'django-insecure-#rcy%hb+ul644vl%x%v94u%zu!__g5mebd#j8h#q10&fun^kot'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 CSRF_TRUSTED_ORIGINS = [
     "https://defacing-murmuring-devourer.ngrok-free.dev",
@@ -53,6 +53,12 @@ ALLOWED_HOSTS = [
     "defacing-murmuring-devourer.ngrok-free.dev"
 ]
 
+RENDER_EXTERNAL_HOSTNAME = os.environ.get(
+    'RENDER_EXTERNAL_HOSTNAME'
+)
+
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
@@ -70,6 +76,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -165,6 +174,15 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

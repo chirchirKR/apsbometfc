@@ -8,6 +8,7 @@ cryptography @ file:///home/builder/.termux-build/python-cryptography/src
 daraja-v3==0.2.1
 Django==6.0.7
 django-daraja==1.3.0
+gunicorn==26.2.0
 idna==3.18
 meaningless==1.4.0
 mpesa-integration==0.1.0
@@ -29,5 +30,6 @@ typing_extensions==4.16.0
 tzdata==2026.5
 urllib3==2.7.0
 wheel==0.48.0
+whitenoise==6.12.0
 xmltodict==1.0.4
 youtube-dl==2021.12.17
