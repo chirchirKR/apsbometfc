@@ -59,6 +59,6 @@ class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)       
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     sized = models.CharField(max_length=4)
-    payed = models.DecimalField()
+    payed = models.DecimalField(decimal_places=2, max_digits=10)
     phone_number = models.PositiveIntegerField()
     date_payed = models.DateTimeField(auto_now_add=True)
