@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <link rel="icon" href="https://files.catbox.moe/2ui36x.jpeg"/>
+  <title>Payment</title>
+</head>
+<body>
+  <h2>Lipa Na M-pesa</h2>
+    <form method="post">
+      {% csrf_token %}
+      <fieldset>
+        <legend>Product</legend>
+        <input value="" placeholder="{{ form.data_product }}" disabled/>
+      </fieldset>
+      <fieldset>
+        <legend>Amount</legend>
+        <input value="" placeholder="KES {{ form.data_price }}" disabled/>
+      </fieldset>
+      <fieldset>
+        <legend>Email</legend>
+        <input value="" name="user_email" placeholder="example@gmail.com" type="email" required/>
+      </fieldset>
+      <fieldset>
+        <legend>Size</legend>
+         <select required name="product_size">
+            <option value="">Choose Size</option>
+            {% if form.splitSize %}
+            {% for sized in form.splitSize %}
+            <option value="{{ sized }}">{{ sized }}</option>
+            {% endfor %}
+            {% endif %}
+            <!--option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option-->
+         </select>
+      </fieldset>
+      <fieldset>
+        <legend>Phone Number</legend>
+        <input value="" type="tel" name="phone_number" placeholder="07XXXXXXXX or 2547XXXXXXXX" min="0" maxlength="13" minlength="10" required/>
+        <p class="error">{{ errorMsg }}</p>
+      </fieldset>
+      <button class="btn-submit" type="submit">Proceed to Pay</button>
+    </form>
+</body>
+<style>
+body {
+  margin: 0;
+  border: 0;
+  overflow: hidden;
+  background: aliceblue;
+  padding: 10%;
+}
+
+form {
+  border: 1px solid blue;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+fieldset {
+  border: 1px solid grey;
+  padding: 8px;
+  border-radius: 5px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+input, select {
+  width: 95%;
+  border-radius: 5px;
+  border: 1px solid grey;
+  padding: 8px;
+}
+
+.btn-submit {
+  width: 95%;
+  margin: 10px;
+  border-radius: 5px;
+  background: limegreen;
+  color: white;
+  padding: 8px;
+  border: none;
+}
+
+.error {
+  color: orangered;
+  font-size: 0.8em;
+  padding: 0;
+}
+
+</style>
+</html>

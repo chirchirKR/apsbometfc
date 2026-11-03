@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="About - APS Bomet FC">
+  <title>About | APS Bomet FC</title>
+  <link rel="stylesheet" href="{% static 'css/styleall.css' %}">
+  <script src="{% static 'js/script.js' %}"></script>
+  <link rel="icon" href="https://files.catbox.moe/2ui36x.jpeg"/>
+</head>
+<body>
+  <!--div class="announcement">OFFICIAL CLUB STORE · NEW SEASON KITS AVAILABLE NOW</div-->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="{% url 'homeApp:home' %}">
+        <div class="crest" >
+          <img src="{% static 'files/apslogo.jpeg' %}" class="logo">
+          
+        </div>
+        <div>
+          <div class="brand-name">APS Bomet FC</div>
+          <div class="brand-tag">Ng'etundo ko Agenge</div>
+          
+        </div>
+      </a>
+      <nav class="nav-links" id="navLinks">
+                    <a href="{% url 'homeApp:home' %}">Home</a>
+                    <a href="{% url 'homeApp:shop' %}">Shop</a>
+                    <a href="{% url 'homeApp:team' %}">Team</a>
+                    <a href="{% url 'homeApp:matches' %}">Matches</a>
+                    <a href="{% url 'homeApp:news' %}">News</a>
+                    <a href="{% url 'homeApp:about' %}">About</a>
+                    <a href="{% url 'homeApp:contact' %}">Contact</a>        
+      </nav>
+      <div class="nav-actions">
+        <!--button class="icon-btn" onclick="openCart()" aria-label="Open cart">🛒 <span id="cartCount">0</span></button-->
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+        
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="eyebrow">About APS Bomet FC</div>
+        <h1>Our Club.<br>Our Pride.</h1>
+        <p>Built on teamwork, determination and community spirit, APS Bomet FC brings people together through the beautiful game.</p>
+        
+      </div>
+    </section>
+    <section class="section section-white">
+      <div class="container split">
+        <div>
+          <div class="eyebrow">Our story</div>
+          <h2>More than football</h2>
+          <p>APS Bomet FC is driven by a love of football and a commitment to our community. Our goal is to develop talent, inspire young players and represent our supporters with pride.</p>
+          <p class="muted">•  Abdullahi Adan (then Bomet police boss) in 2004 as a community peace-building and talent-nurturing initiative, which later officially developed into the A.P.S Bomet club structure in 2014.</p>
+          
+        </div>
+        <img class="card-img" style="height:320px;border-radius:14px" src="{% static 'files/club2.jpg' %}" alt="Football stadium">
+        
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="grid">
+          <div class="panel">
+            <h3>Excellence</h3>
+            <p>We strive to give our best in everything we do.</p>
+            
+          </div>
+          <div class="panel">
+            <h3>Community</h3>
+            <p>We are stronger when we stand together.</p>
+            
+          </div>
+          <div class="panel">
+            <h3>Integrity</h3>
+            <p>We play fair, on and off the pitch.</p>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-top">
+        <a class="brand" href="home.html">
+          <div class="crest">
+            <img src="{% static 'files/apslogo.jpeg' %}" class="logo">
+            
+          </div>
+          <div>
+            <div class="brand-name">APS BOMET FC</div>
+            <div class="brand-tag">Ng'etundo ko Agenge</div>
+            
+          </div>
+        </a>
+        <nav class="footer-links">
+                    <a href="{% url 'homeApp:home' %}">Home</a>
+                    <a href="{% url 'homeApp:shop' %}">Shop</a>
+                    <a href="{% url 'homeApp:team' %}">Team</a>
+                    <a href="{% url 'homeApp:matches' %}">Matches</a>
+                    <a href="{% url 'homeApp:news' %}">News</a>
+                    <a href="{% url 'homeApp:about' %}">About</a>
+                    <a href="{% url 'homeApp:contact' %}">Contact</a>
+          
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> APS Bomet FC. All rights reserved.</span>
+        
+      </div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="modal-backdrop" id="cartBackdrop" onclick="backdropClose(event,'cartBackdrop')">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h2>Your Shopping Cart</h2>
+        <button class="close-btn" onclick="closeCart()">×</button>
+        
+      </div>
+      <div id="cartItems">
+        
+      </div>
+      <div class="total">
+        <span>Total</span>
+        <span id="cartTotal">KES 0</span>
+        
+      </div>
+      <button class="btn btn-dark" onclick="checkoutDemo()">Proceed to checkout →</button>
+      <p class="muted">Demo checkout only. Connect a secure backend and payment provider before accepting payments.</p>
+      
+    </div>
+  </div>
+  
+</body>
+</html>

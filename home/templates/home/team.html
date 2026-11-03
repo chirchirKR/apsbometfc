@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Team - Aps Bomet FC">
+    <title>Team |APS Bomet FC</title>
+    <link rel="stylesheet" href="{% static 'css/styleall.css' %}?v=1.0.1">
+    <link rel="icon" href="https://files.catbox.moe/2ui36x.jpeg"/>
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+
+<body>
+    <!--div class="announcement">OFFICIAL CLUB STORE · NEW SEASON KITS AVAILABLE NOW</div-->
+    <header>
+        <div class="container nav">
+            <a class="brand" href="{% url 'homeApp:home' %}">
+                <div class="crest">
+                    <img class="logo" src="{% static 'files/apslogo.jpeg' %}">
+                    
+                </div>
+                <div>
+                    <div class="brand-name">APS BOMET FC</div>
+                    <div class="brand-tag">Ng'etundo ko Agenge</div>
+                   
+                </div>
+            </a>
+            <nav class="nav-links" id="navLinks">
+                    <a href="{% url 'homeApp:home' %}">Home</a>
+                    <a href="{% url 'homeApp:shop' %}">Shop</a>
+                    <a href="{% url 'homeApp:team' %}">Team</a>
+                    <a href="{% url 'homeApp:matches' %}">Matches</a>
+                    <a href="{% url 'homeApp:news' %}">News</a>
+                    <a href="{% url 'homeApp:about' %}">About</a>
+                    <a href="{% url 'homeApp:contact' %}">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <!--button class="icon-btn" onclick="openCart()" aria-label="Open cart">🛒 <span id="cartCount"></span></button-->
+                <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+                
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="eyebrow">Meet the squad</div>
+                <h1 style="font-size:clamp(2.4rem,5vw,3.8rem)">The APS Bomet Team</h1>
+                <div class="grid">
+                    <article class="card">
+                        <img class="card-img captain-img" src="{% static 'files/captain.jpeg' %}" alt="Football team player">
+                        <div class="card-body">
+                            <span class="tag">PHLIP WASAI</span>
+                            <h3>Team Captain</h3>
+                            <p class="muted">Its more than a title, it’s a responsibility.A captain must lead with actions before words.".</p>
+                            
+                        </div>
+                    </article>
+   
+                    <article class="card">
+                        <img class="card-img captain-img" src="{% static 'files/forward.jpg' %}" alt="Football team player">
+                        <div class="card-body">
+                            <span class="tag">EVANS KIPKEMOI</span>
+                            <h3>First-Team Forward</h3>
+                            <p class="muted">Net finder. Give him an inch, he will take the back of the net..</p>
+                            
+                        </div>
+                    </article>
+        
+                    <article class="card">
+                        <img class="card-img captain-img" src="{% static 'files/gkeeper.jpg' %}" alt="Football team player">
+                        <div class="card-body">
+                            <span class="tag">MAXWELL MULILI</span>
+                            <h3>Club Goalkeeper</h3>
+                            <p class="muted">Access Denied. The reason they can't celebrate. .</p>
+                            
+                        </div>
+                    </article>
+                </div>
+                <section class="section">
+                    <div class="panel">
+                        <h2>Coaching & Club Staff</h2>
+                        <div class="grid">
+                            <article class="card">
+                                <img class="card-img captain-img" src="{% static 'files/coach1.jpg' %}" alt="Football team player">
+                                <div class="card-body">
+                                    <span class="tag">BENEDICT WANJALA</span>
+                                    <h3>Team Coach</h3>
+                                    <p class="muted">Its more than a title, it’s a responsibility.A captain must lead with actions before words.".</p>
+                                    
+                                </div>
+                            </article>
+                            <article class="card">
+                                <img class="card-img captain-img" src="{% static 'files/ceo1.jpg' %}" alt="Football team player">
+                                <div class="card-body">
+                                    <span class="tag">ROSE CHEMUTAI</span>
+                                    <h3>Team CEO</h3>
+                                    <p class="muted">She is a trailblazer who guided APS Bomet from lower tiers into the Kenyan Premier League (FKF Premier League).</p>
+                                    
+                                </div>
+                            </article>
+                
+                            <article class="card">
+                                <img class="card-img patron-img" src="{% static 'files/patron1.jpg' %}" alt="Football team player">
+                                <div class="card-body">
+                                    <span class="tag">KIPCHUMBA MURKOMEN</span>
+                                    <h3>Team Patron</h3>
+                                    <p class="muted"> He was named patron in June 2025 following a request by Deputy Inspector General-APS Gilbert Masengeli after the club earned promotion to the FKF Premier League.</p>
+                                    
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-top">
+                <a class="brand" href="{% url 'homeApp:home' %}">
+                    <div class="crest">
+                        <img class="logo" src="{% static 'files/apslogo.jpeg' %}">
+                        
+                    </div>
+                    <div>
+                        <div class="brand-name">APS BOMET FC</div>
+                        <div class="brand-tag">Ng'etundo ko Agenge</div>
+                        
+                    </div>
+                </a>
+                <nav class="footer-links">
+                    <a href="{% url 'homeApp:home' %}">Home</a>
+                    <a href="{% url 'homeApp:shop' %}">Shop</a>
+                    <a href="{% url 'homeApp:team' %}">Team</a>
+                    <a href="{% url 'homeApp:matches' %}">Matches</a>
+                    <a href="{% url 'homeApp:news' %}">News</a>
+                    <a href="{% url 'homeApp:about' %}">About</a>
+                    <a href="{% url 'homeApp:contact' %}">Contact</a>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <span>© <span id="year"></span> APS Bomet FC. All rights reserved.</span>
+                
+            </div>
+        </div>
+    </footer>
+    
+    <div class="toast" id="toast" role="status"></div>
+    <div class="modal-backdrop" id="cartBackdrop" onclick="backdropClose(event,'cartBackdrop')">
+        <div class="modal" role="dialog" aria-modal="true">
+            <div class="modal-header">
+                <h2>Your Shopping Cart</h2>
+                <button class="close-btn" onclick="closeCart()">×</button>
+                
+            </div>
+            <div id="cartItems">
+                
+            </div>
+            <div class="total">
+                <span>Total</span>
+                <span id="cartTotal">KES 0</span>
+                
+            </div>
+            <button class="btn btn-dark" onclick="checkoutDemo()">Proceed to checkout →</button>
+            <p class="muted">Demo checkout only. Connect a secure backend and payment provider before accepting payments.</p>
+            
+        </div>
+    </div>
+    
+    
+</body>
+</html>

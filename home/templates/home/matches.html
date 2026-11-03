@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Matches | APS Bomet FC</title>
+        <link rel="stylesheet" href="{% static 'css/styleall.css' %}?v=1.0.0">
+        <link rel="icon" href="https://files.catbox.moe/2ui36x.jpeg"/>
+        <script src="{% static 'js/script.js' %}"></script>
+    </head>
+    <body>
+        <!--div class="announcement">OFFICIAL CLUB STORE · NEW SEASON KITS AVAILABLE NOW</div-->
+        <header>
+            <div class="container nav">
+                <a class="brand" href="{% url 'homeApp:home' %}">
+                    <div class="crest">
+                        <img class="logo" src="{% static 'files/apslogo.jpeg' %}">
+                    </div>
+                    <div>
+                        <div class="brand-name">APS Bomet FC</div>
+                        <div class="brand-tag">Ngetundo Ko Agenge</div>
+                    </div>
+                </a>
+                <nav class="nav-links" id="navLinks">
+                    <a href="{% url 'homeApp:home' %}">Home</a>
+                    <a href="{% url 'homeApp:shop' %}">Shop</a>
+                    <a href="{% url 'homeApp:team' %}">Team</a>
+                    <a href="{% url 'homeApp:matches' %}">Matches</a>
+                    <a href="{% url 'homeApp:news' %}">News</a>
+                    <a href="{% url 'homeApp:about' %}">About</a>
+                    <a href="{% url 'homeApp:contact' %}">Contact</a>
+                </nav>
+                <div class="nav-actions">
+                    <!--button class="icon-btn" onclick="openCart()" aria-label="Open cart">&#128722; <span id="cartCount">0</span></button-->
+                    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">&#9776;</button>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="section section-dark">
+                <div class="container">
+                    <div class="eyebrow">Fixtures & results</div>
+                    <h1 style="font-size:clamp(2.4rem,5vw,3.8rem)">Match Centre</h1>
+                    <p>Follow the fixtures and recent results for APS Bomet FC.</p>
+                    <div class="split">
+                        {% if next_fixture %}
+                        <div class="panel" style="color:var(--ink)">
+                            
+                            <h2>Next Fixture</h2>
+                            <p class="muted">{{ next_fixture.datetime_played|date:'' }} EAT</p>
+                            <div class="fixture">
+                                <div class="fixture-team">
+                                    <img class="logo" src="{{ next_fixture.homelogo.url }}"><br>{{ next_fixture.homeTcaseUp }}</div>
+                                <div class="score">VS</div>
+                                <div class="fixture-team">
+                                    <img src="{{ next_fixture.awaylogo.url }}" class="logo"/><br>{{ next_fixture.awayTcaseUp }}</div>
+                            </div>
+                            <p><strong>Venue:</strong> {{ next_fixture.stadium }}, {{ next_fixture.county }}</p>
+                            
+                            <!--a class="btn btn-dark" href="contact.html">Ask about tickets →</a-->
+                            
+                            {% for fixture in fixtures %}
+                             <div class="fixture">
+                                <div class="fixture-team"><br>{{ fixture.homeTcaseUp }}</div>
+                                <div class="score">VS</div>
+                                <div class="fixture-team"><br>{{ fixture.awayTcaseUp }}<br><small class="muted">{{ fixture.datetime_played|date:'' }}</small></div>
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                        {% else %}
+                        <div class="panel" style="color:var(--ink)"><p class="muted">No Upcoming Matches</p></div>
+                        {% endif %}
+                        {% if results %}
+                        <div class="panel" style="color:var(--ink)">
+                            <h2>Latest Results</h2>
+                            {% for result in results %}
+                            <div class="fixture">
+                                <div class="fixture-team">{{ result.home_team }}</div>
+                                <div class="score">{{ result.home_score }}–{{ result.away_score }}</div>
+                                <div class="fixture-team">{{ result.away_team }}<br><small class="muted">{{ result.datetime_played|date:'' }}</small></div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <div class="panel" style="color:var(--ink)">
+                            <p class="muted">No Results</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <!--p class="muted" style="color:#c5d0cb">Fixture details are sample content. Confirm dates and scores before publishing.</p-->
+                    
+                </div>
+            </section>
+        </main>
+        <footer id="contact">
+            <div class="container">
+                <div class="footer-top">
+                    <a class="brand" href="{% url 'homeApp:home' %}">
+                        <div class="crest">
+                            <img class="logo" src="{% static 'files/apslogo.jpeg' %}">
+                            
+                        </div>
+                        <div>
+                            <div class="brand-name">APS Bomet FC</div>
+                            <div class="brand-tag">Ngetundo ko Agenge</div>
+                            
+                        </div>
+                    </a>
+                    <nav class="footer-links">
+                    <a href="{% url 'homeApp:home' %}">Home</a>
+                    <a href="{% url 'homeApp:shop' %}">Shop</a>
+                    <a href="{% url 'homeApp:team' %}">Team</a>
+                    <a href="{% url 'homeApp:matches' %}">Matches</a>
+                    <a href="{% url 'homeApp:news' %}">News</a>
+                    <a href="{% url 'homeApp:about' %}">About</a>
+                    <a href="{% url 'homeApp:contact' %}">Contact</a>
+                        
+                    </nav>
+                </div>
+                <div class="footer-bottom"><span>&#169; <span id="year"></span> APS Bomet FC. All rights reserved.</span></div>
+                
+            </div>
+        </footer>
+        <div class="toast" id="toast" role="status"></div>
+        <div class="modal-backdrop" id="cartBackdrop" onclick="backdropClose(event,'cartBackdrop')">
+            <div class="modal" role="dialog" aria-modal="true">
+                <div class="modal-header">
+                    <h2>Your Shopping Cart</h2>
+                    <button class="close-btn" onclick="closeCart()">×</button>
+                    
+                </div>
+                <div id="cartItems"></div>
+                <div class="total"><span>Total</span><span id="cartTotal">KES 0</span></div>
+                <button class="btn btn-dark" onclick="checkoutDemo()">Proceed to checkout →</button>
+                <p class="muted">Demo checkout only. Connect a secure backend and payment provider before accepting payments.</p></div>
+            
+        </div>
+        
+    </body>
+</html>
