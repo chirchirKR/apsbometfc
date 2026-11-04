@@ -116,7 +116,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-"""
+
 
 DATABASES = {
     "default": {
@@ -131,7 +131,21 @@ DATABASES = {
         },
     }
 }
+"""
 
+DATABASES = {  
+    "default": {  
+        "ENGINE": "django.db.backends.postgresql",  
+        "NAME": "postgres",  
+        "USER": "postgres.rgxdpuseotokkspbbeew",  
+        "PASSWORD": "P@$$word!_962113017",  
+        "HOST": "aws-1-eu-west-3.pooler.supabase.com",  
+        "PORT": "5432",  
+        "OPTIONS": {  
+            "sslmode": "require",  
+        },  
+    }  
+}
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
