@@ -12,7 +12,10 @@ import os
 from django.http import JsonResponse
 from django.conf import settings
 from django.views.decorators.http import require_POST
-from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+
 
 from .methods import *
 # Create your views here.
@@ -186,3 +189,36 @@ def mpesa_callback(request):
     
     return JsonResponse({"ResultCode": 1, "ResultDesc": "Invalid Request Method"})
 
+
+def not_logged_in(user):
+    return not user.is_authenticated
+
+
+@user_passes_test(not_logged_in, login_url='login')
+def signin(request):
+    
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        
+        if form.is_valid():
+            form.save()
+            
+            login(request, user)
+            return redirect('home')
+            
+        else:
+            form = UserCreationForm()
+            
+    return render(request, 'home/signin.html', {"form": form})
+        
+def login(request):
+    if user.is_authenticated:
+        return redirect('home')
+        
+    return render(request, 'home/login.html')
+    
+def resetpass(request):
+    if not user.is_authenticated:
+        return redirect('signin')
+        
+    return render(request, 'home/forgot-pass.html')

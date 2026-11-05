@@ -16,4 +16,7 @@ urlpatterns = [
     path('mpesa/callback/', views.mpesa_callback, name='mpesa_callback'),
     path('proceedNpay/<str:productID>/', views.displayPaymentPage, name='payment'),
     path('save-json/', views.save_json,  name='save-json'),
+    path('signin/', views.signin, name='signin'),
+    path('login/', views.login, name='login'),
+    path('forgotpassword/', views.resetpass, name='resetpass'),
 ]

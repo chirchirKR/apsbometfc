@@ -1,0 +1,74 @@
+:root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#19191d;background:#f6f1ff;font-synthesis:none;text-rendering:optimizeLegibility}
+*{box-sizing:border-box}
+body{margin:0;min-width:320px;min-height:100vh;background:radial-gradient(ellipse at 8% 22%,rgba(207,190,255,.48),transparent 34%),radial-gradient(ellipse at 90% 20%,rgba(255,190,207,.48),transparent 32%),radial-gradient(ellipse at 55% 100%,rgba(183,220,255,.55),transparent 38%),#f7f2ff}
+a{color:#70439a;text-decoration:none;font-weight:650}
+a:hover{text-decoration:underline}
+.auth-shell{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:48px 24px}
+.auth-card{width:min(100%,706px);background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.8);border-radius:42px;padding:52px 58px 42px;box-shadow:0 28px 80px rgba(100,75,145,.12)}
+.brand{display:flex;align-items:center;gap:18px;color:inherit;width:max-content;margin-bottom:42px}
+.brand:hover{text-decoration:none}
+.brand-mark{width:52px;height:52px;border-radius:50%;background:#17171b;display:grid;place-items:center;flex:none}
+.brand-mark span{width:21px;height:21px;border:4px solid #c18ce9;border-right-color:transparent;border-radius:50%;transform:rotate(-35deg);position:relative}
+.brand-mark span:after{content:"";position:absolute;width:5px;height:5px;border-radius:50%;background:#f2a4c7;right:-3px;top:0}
+.brand strong{display:block;font-size:27px;line-height:1.2;letter-spacing:-.5px}
+.brand small{display:block;color:#77777f;font-size:17px;margin-top:3px}
+.auth-tabs{height:70px;background:#f3f3f4;border-radius:40px;padding:5px;display:grid;grid-template-columns:1fr 1fr;margin-bottom:43px}
+.auth-tabs a{display:flex;align-items:center;justify-content:center;border-radius:36px;color:#4c4c53;font-size:18px;font-weight:600}
+.auth-tabs a.active{background:#fff;color:#1b1b1f;box-shadow:0 3px 10px rgba(0,0,0,.13)}
+.single-tab{grid-template-columns:1fr;margin-bottom:32px}
+h1{font-size:36px;line-height:1.2;letter-spacing:-1.1px;margin:0 0 36px;font-weight:750}
+.intro-copy{font-size:16px;line-height:1.6;color:#77777f;margin:-20px 0 28px}
+.field{margin-bottom:23px}
+.field label,.label-line label{display:block;font-size:17px;font-weight:650;margin-bottom:12px}
+input:not([type=checkbox]){width:100%;height:74px;border:1.5px solid #d8d8dc;border-radius:20px;background:#fff;padding:0 18px;font:inherit;font-size:18px;color:#19191d;outline:none;transition:border-color .16s,box-shadow .16s}
+input:not([type=checkbox]):focus{border-color:#9b68b8;box-shadow:0 0 0 5px rgba(174,126,205,.22)}
+.password-wrap{position:relative}
+.password-wrap input{padding-right:60px}
+.eye-btn{position:absolute;right:15px;top:50%;transform:translateY(-50%);width:34px;height:38px;border:0;background:transparent;color:#73737a;display:grid;place-items:center;cursor:pointer}
+.eye-btn svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hint{font-size:15px;color:#85858c;margin:10px 0 0}
+.check-row{display:flex;align-items:center;gap:13px;font-size:16px;line-height:1.5;margin:28px 0 26px;cursor:pointer}
+.check-row input{appearance:none;width:25px;height:25px;border:1.7px solid #99999f;border-radius:5px;margin:0;flex:none;display:grid;place-items:center;cursor:pointer}
+.check-row input:checked{background:#17171b;border-color:#17171b}
+.check-row input:checked:after{content:"✓";color:white;font-size:17px}
+.primary-btn{width:100%;min-height:78px;border:0;border-radius:21px;background:#171719;color:white;font:inherit;font-size:19px;font-weight:650;cursor:pointer;transition:transform .15s,background .15s}
+.primary-btn:hover{background:#303035;transform:translateY(-1px)}
+.primary-btn:active{transform:translateY(0)}
+.switch-copy{text-align:center;color:#85858c;font-size:17px;margin:28px 0 0}
+.switch-copy a{margin-left:5px}
+.demo-note{text-align:center;color:#92929a;font-size:15px;margin:37px 0 0}
+.label-line{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.label-line label{margin:0}
+.label-line a{font-size:14px}
+.form-message{display:none;font-size:14px;line-height:1.45;margin:0 0 16px;color:#9b3434}
+.form-message.visible{display:block}
+.form-message.success{color:#34744b}
+.back-link{display:inline-block;font-size:15px;margin:0 0 24px}
+@media(max-width:640px){
+ .auth-shell{padding:22px 15px;align-items:center}
+ .auth-card{padding:32px 25px 29px;border-radius:29px}
+ .brand{gap:13px;margin-bottom:30px}
+ .brand-mark{width:45px;height:45px}
+ .brand strong{font-size:24px}.brand small{font-size:14px}
+ .auth-tabs{height:60px;margin-bottom:34px}
+ .auth-tabs a{font-size:15px}
+ h1{font-size:29px;margin-bottom:29px;letter-spacing:-.7px}
+ .intro-copy{font-size:15px;margin-top:-14px}
+ .field{margin-bottom:20px}
+ .field label,.label-line label{font-size:15px;margin-bottom:10px}
+ input:not([type=checkbox]){height:61px;border-radius:16px;font-size:16px}
+ .check-row{font-size:14px;gap:10px;margin:24px 0}
+ .check-row input{width:23px;height:23px}
+ .primary-btn{min-height:64px;border-radius:17px;font-size:17px}
+ .switch-copy{font-size:15px;margin-top:23px}
+ .demo-note{font-size:13px;margin-top:29px}
+}
+@media(max-width:360px){
+ .auth-shell{padding:12px 10px}
+ .auth-card{padding:27px 18px 24px;border-radius:24px}
+ .brand small{font-size:12px}
+ h1{font-size:26px}
+ .auth-tabs a{font-size:14px}
+ .check-row{align-items:flex-start}
+}
+@media(min-width:900px){.auth-card{padding:55px 58px 43px}}

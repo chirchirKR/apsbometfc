@@ -60,3 +60,13 @@ print(is_valid_kenyan_phone("+254812345678"))  # False
 print(normalize_kenyan_phone("0712 345 678"))
 # 254712345678
 """
+
+
+def validate_username(username):
+    if not username:
+        return False
+
+    if not re.fullmatch(r'[a-zA-Z0-9_]{4,20}', username):
+        return False
+
+    return not User.objects.filter(username=username).exists()
