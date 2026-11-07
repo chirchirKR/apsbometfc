@@ -1,4 +1,5 @@
-from django.urls import path
+from django.urls import path, reverse_lazy
+from django.contrib.auth import views as auth_views
 
 from . import views
 
@@ -16,7 +17,8 @@ urlpatterns = [
     path('mpesa/callback/', views.mpesa_callback, name='mpesa_callback'),
     path('proceedNpay/<str:productID>/', views.displayPaymentPage, name='payment'),
     path('save-json/', views.save_json,  name='save-json'),
-    path('signin/', views.signin, name='signin'),
-    path('login/', views.login, name='login'),
-    path('forgotpassword/', views.resetpass, name='resetpass'),
+    #path('signin/', views.signin, name='signin'),
+    #path('login/', views.login, name='login'),
+    #path('forgot_password/', views.forgot_password, name='resetpass'),
+    #path('reset/<str:token>/', views.password_reset_confirm, name='token')
 ]

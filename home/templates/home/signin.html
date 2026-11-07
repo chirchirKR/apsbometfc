@@ -5,47 +5,139 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f0ff">
   <title>Create account · APS Bomet FC</title><link rel="stylesheet" href="{% static 'css/style.css' %}">
+  
 </head>
 <body>
   <main class="auth-shell">
     <section class="auth-card" aria-labelledby="page-title">
-      <a class="brand" href="{% url homeApp:home %}" aria-label="Loop home">
+      <a class="brand" href="{% url 'homeApp:home' %}" aria-label="Loop home">
         <span class="brand-mark"><span></span></span>
         <span><strong>APS BOMET FC</strong><small>Ng'etundo ko agenge</small></span>
       </a>
       <nav class="auth-tabs" aria-label="Account pages">
-        <a href="{% url homeApp:login %} ">Log in</a><a class="active" href="{% url homeApp:signup %}" aria-current="page">Create account</a>
+        <a href="{% url 'homeApp:login' %} ">Log in</a><a class="active" href="{% url 'homeApp:signin' %}" aria-current="page">Create account</a>
       </nav>
-      <h1 id="page-title">Create Account</h1>
-      <form id="register-form" novalidate>
-        {% csrf_token %}
-        <div class="field">
-          <label for="name">Username</label>
-          <input id="username" name="{{ form.username.name }}" autocomplete="name" required placeholder="username001" value="{{ form.username.value }}">
-          <p style="font-size: 0.8em; color: orangered;">{{ form.username.errors }}</p>
+      <h1 id="page-title">Create Account</h1>      
+<form id="register-form" method="post" novalidate>
+    {% csrf_token %}
+
+    <div class="field">
+        <label for="username">Username</label>
+        <input
+            id="username"
+            name="{{ form.username.name }}"
+            autocomplete="username"
+            required
+            placeholder="username001"
+            value="{{ form.username.value|default:'' }}"
+        >
+        <p style="font-size: 0.8em; color: orangered;">
+            {{ form.username.errors }}
+        </p>
+    </div>
+
+    <div class="field">
+        <label for="password1">Create a password</label>
+
+        <div class="password-wrap">
+            <input
+                id="password1"
+                name="{{ form.password1.name }}"
+                type="password"
+                autocomplete="new-password"
+                required
+            >
+
+            <button class="eye-btn" type="button"
+                data-toggle-password="password1"
+                aria-label="Show password">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/>
+                    <circle cx="12" cy="12" r="2.8"/>
+                </svg>
+            </button>
         </div>
-        <div class="field"><label for="email">Email</label><input id="email" name="{{ form.email.name }}" type="email" autocomplete="email" required placeholder="example@gmail.com" value="{{ form.email.value }}">
-          <p style="font-size: 0.8em; color: orangered;">{{ form.email.errors }}</p>
+
+        <p class="hint">At least 8 characters, including a number.</p>
+
+        <p style="font-size: 0.8em; color: orangered;">
+            {{ form.password1.errors }}
+        </p>
+    </div>
+
+    <div class="field">
+        <label for="password2">Confirm password</label>
+
+        <div class="password-wrap">
+            <input
+                id="password2"
+                name="{{ form.password2.name }}"
+                type="password"
+                autocomplete="new-password"
+                required
+            >
+
+            <button class="eye-btn" type="button"
+                data-toggle-password="password2"
+                aria-label="Show password">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/>
+                    <circle cx="12" cy="12" r="2.8"/>
+                </svg>
+            </button>
         </div>
-        <div class="field">
-          <label for="password">Create a password</label>
-          <div class="password-wrap"><input id="password1" name="{{ form.password1.name }}" type="password" autocomplete="new-password" minlength="8" required><button class="eye-btn" type="button" data-toggle-password="password" aria-label="Show password"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.8"/></svg></button></div>
-          <p class="hint">At least 8 characters, including a number.</p>
-          <p style="font-size: 0.8em; color: orangered;">{{ form.password1.errors }}</p>
-        </div>
-        <div class="field">
-          <label for="password">Confirm password</label>
-          <div class="password-wrap"><input id="password2" name="{{ form.password2.name }}" type="password" autocomplete="new-password" minlength="8" required><!--button class="eye-btn" type="button" data-toggle-password="password" aria-label="Show password"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.8"/></svg></button-->
-            <p style="font-size: 0.8em; color: orangered;">{{ form.password2.errors }}</p>
-          </div>
-        </div>
-        <!--label class="check-row"><input type="checkbox" id="terms" required><span>I agree to the <a href="#" data-demo-link>Terms</a> and <a href="#" data-demo-link>Privacy Policy</a></span></label-->
-        <p class="form-message" id="register-message" role="status"></p>
-        <button class="primary-btn" type="submit">Create account</button>
-      </form>
-      <p class="switch-copy">Already have one? <a href="{% url homeApp:login %}">Log in</a></p>
+
+        <p style="font-size: 0.8em; color: orangered;">
+            {{ form.password2.errors }}
+        </p>
+    </div>
+
+    <!--label class="check-row">
+        <input type="checkbox" id="terms" required>
+        <span>
+            I agree to the
+            <a href="#" data-demo-link>Terms</a>
+            and
+            <a href="#" data-demo-link>Privacy Policy</a>
+        </span>
+    </label-->
+
+    <p class="form-message" id="register-message" role="status"></p>
+
+    <button class="primary-btn" type="submit">
+        Create account
+    </button>
+</form>
+      <p class="switch-copy">Already have one? <a href="{% url 'homeApp:login' %}">Log in</a></p>
       <p class="demo-note">All Rights Reservered | &copy;2027 </p>
     </section>
   </main>
-  <script src="{% static 'js/auth.js' %}"></script>
-</body></html>
+  <script>
+  
+document.querySelectorAll('[data-toggle-password]').forEach(button => {
+
+    button.addEventListener('click', () => {
+
+        const inputId = button.dataset.togglePassword;
+        const input = document.getElementById(inputId);
+
+        if (!input) return;
+
+        const isHidden = input.type === 'password';
+
+        input.type = isHidden ? 'text' : 'password';
+
+        button.setAttribute(
+            'aria-label',
+            isHidden ? 'Hide password' : 'Show password'
+        );
+
+        button.classList.toggle('active', isHidden);
+    });
+
+});
+
+  </script> 
+</body>
+
+</html>

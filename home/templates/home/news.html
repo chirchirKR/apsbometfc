@@ -53,11 +53,14 @@
                         {% if news %}
                         {% for content in news %}
                         <article class="card">
-                            <img class="card-img news-side-img" src="{{ content.img_src.url }}" alt="Football news">
+                            <img class="card-img news-side-img" src="{{ content.img_src.url }}" alt="Football news" onclick="window.location.href='{{ content.img_src.url }}'">
                             <div class="card-body">
                                 <div class="muted">{{ content.date_edited|date:'' }}</div>
                                 <h3>{{ content.title }}</h3>
-                                <button class="read-more" onclick="openNews('{{ content.title }}',`{{ content.date_edited|date:'' }}`,'{{ content.content }}')">Read more →</button>
+                                <p>
+                                    {{ content.content }}
+                                </p>
+                                <!--button class="read-more" onclick="openNews('{{ content.title }}',`{{ content.date_edited|date:'' }}`,'{{ content.content }}')">Read more →</button-->
                                 
                             </div>
                             

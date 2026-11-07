@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.utils import timezone
+from datetime import timedelta
 
 # Create your models here.
 
@@ -62,3 +65,39 @@ class Payment(models.Model):
     payed = models.DecimalField(decimal_places=2, max_digits=10)
     phone_number = models.PositiveIntegerField()
     date_payed = models.DateTimeField(auto_now_add=True)
+    
+User = get_user_model()
+
+
+class PasswordResetToken(models.Model):
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='password_reset_tokens'
+    )
+
+    token_hash = models.CharField(
+        max_length=64,
+        unique=True
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    expires_at = models.DateTimeField()
+
+    used_at = models.DateTimeField(
+        null=True,
+        blank=True
+    )
+
+    def is_valid(self):
+        return (
+            self.used_at is None
+            and timezone.now() < self.expires_at
+            and self.user.is_active
+        )
+
+    def __str__(self):
+        return f"Password reset for {self.user.username}"
+    

@@ -1,11 +1,11 @@
-(() => {
-  const showMessage = (id, message, success = false) => {
+document.addEventListener('DOMContentLoaded', () => {
+ /* const showMessage = (id, message, success = false) => {
     const node = document.getElementById(id);
     if (!node) return;
     node.textContent = message;
     node.className = `form-message visible${success ? " success" : ""}`;
   };
-
+*/
   document.querySelectorAll("[data-toggle-password]").forEach(button => {
     button.addEventListener("click", () => {
       const input = document.getElementById(button.dataset.togglePassword);
@@ -16,7 +16,7 @@
     });
   });
 
-  document.querySelectorAll("[data-demo-link]").forEach(link => {
+ /* document.querySelectorAll("[data-demo-link]").forEach(link => {
     link.addEventListener("click", event => {
       event.preventDefault();
       alert("Add your Terms and Privacy Policy pages here.");
@@ -24,7 +24,7 @@
   });
 
   const register = document.getElementById("register-form");
-  /*if (register) register.addEventListener("submit", event => {
+  if (register) register.addEventListener("submit", event => {
     event.preventDefault();
     const name = register.elements.name.value.trim();
     const email = register.elements.email.value.trim();
@@ -52,4 +52,4 @@
     if (!email || !reset.elements.email.validity.valid) return showMessage("reset-message", "Enter a valid email address.");
     showMessage("reset-message", "If this email belongs to an account, a reset link would be sent. (Demo: no email was sent.)", true);
   });*/
-})();
+});

@@ -40,7 +40,7 @@ MPESA_CALLBACK_URL = os.getenv("MPESA_CALLBACK_URL", "").strip()
 SECRET_KEY = 'django-insecure-#rcy%hb+ul644vl%x%v94u%zu!__g5mebd#j8h#q10&fun^kot'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = True #os.environ.get('DEBUG', 'False') == 'True'
 
 CSRF_TRUSTED_ORIGINS = [
     "https://defacing-murmuring-devourer.ngrok-free.dev",
@@ -109,6 +109,7 @@ WSGI_APPLICATION = 'apsbometfc.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
+
 """
 DATABASES = {
     'default': {
@@ -117,7 +118,8 @@ DATABASES = {
     }
 }
 
-
+"""
+"""
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -131,6 +133,7 @@ DATABASES = {
         },
     }
 }
+
 """
 
 DATABASES = {  
@@ -146,6 +149,8 @@ DATABASES = {
         },  
     }  
 }
+
+
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
@@ -208,7 +213,7 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
 EMAIL_HOST_USER = 'kimutaichirchir310@gmail.com'
-EMAIL_HOST_PASSWORD = 'oeliukvnagdwclew'
+EMAIL_HOST_PASSWORD = 'ljknwwpdpanisich'
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 

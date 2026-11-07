@@ -23,10 +23,13 @@
     <nav class="nav-links" id="navLinks" aria-label="Main navigation">
       <a class="active" href="{% url 'homeApp:home' %}">Home</a><a href="{% url 'homeApp:shop' %}">Shop</a><a href="{% url 'homeApp:team' %}">Team</a>
       <a href="{% url 'homeApp:matches' %}">Matches</a><a href="{% url 'homeApp:news' %}">News</a><a href="{% url 'homeApp:about' %}">About</a><a href="{% url 'homeApp:contact' %}">Contact</a>
+      <!--{% if not request.user.is_authenticated %}
+      <a href="">Sign Up</a>
+      {% endif %}-->
     </nav>
     <div class="nav-actions">
-      <!--button class="icon-btn search-btn" aria-label="Search" onclick="showToast('Search can be connected to your product catalogue.')">⌕</button>
-  <button class="icon-btn" aria-label="Open shopping cart"><a href="{% url 'homeApp:shop' %}">🛒</a><span class="cart-count" id="cartCount">0</span></button-->
+      <!--button class="icon-btn search-btn" aria-label="Search" onclick="locateUserTo('')">Sign In</button>
+  <button class="icon-btn" aria-label="Open shopping cart" onclick="locateUserTo('')">Sign In<!--span class="cart-count" id="cartCount">0</span--></button>
       <button class="icon-btn menu-toggle" aria-label="Toggle navigation" onclick="toggleMenu()">☰</button>
     </div>
   </div>
@@ -38,7 +41,7 @@
     <div class="eyebrow">APS Bomet Football Club</div>
     <h1>More Than<br>Just a Club.</h1>
     <p>We play with passion, unite our community and strive for greatness — on and off the pitch.</p>
-    <div class="btn-row"><a class="btn btn-primary" href="{% url 'homeApp:shop' %}">Shop Official Jerseys <span>→</span></a><a class="btn btn-outline" href="{% url 'homeApp:about' %}">View Our Story</a></div>
+    <div class="btn-row"><a class="btn btn-primary" href="{% url 'homeApp:shop' %}">View Official Jerseys <span>→</span></a><a class="btn btn-outline" href="{% url 'homeApp:about' %}">View Our Story</a></div>
   </div></div>
 </section>
 
@@ -47,7 +50,7 @@
     <div class="intro">
       <div class="eyebrow">Official jerseys</div><h2>Get Your Club Jersey</h2>
       <p>Show your support with official jerseys, training kits and exclusive merchandise. Available in multiple sizes.</p>
-      <a class="btn btn-dark" href="{% url 'homeApp:shop' %}">Shop Kits <span>→</span></a>
+      <a class="btn btn-dark" href="{% url 'homeApp:shop' %}">View Kits <span>→</span></a>
       <p class="product-note">All prices shown in Kenyan shillings (KES).</p>
     </div>
     <div class="products" id="products">

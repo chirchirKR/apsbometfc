@@ -44,6 +44,7 @@ input:not([type=checkbox]):focus{border-color:#9b68b8;box-shadow:0 0 0 5px rgba(
 .form-message.visible{display:block}
 .form-message.success{color:#34744b}
 .back-link{display:inline-block;font-size:15px;margin:0 0 24px}
+#id_password1_error, #id_password2_error{color: orangered;}
 @media(max-width:640px){
  .auth-shell{padding:22px 15px;align-items:center}
  .auth-card{padding:32px 25px 29px;border-radius:29px}

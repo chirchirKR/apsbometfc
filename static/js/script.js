@@ -214,3 +214,7 @@ console.log(JSON.stringify(products)); window.location.href = `/proceedNpay/`; r
 
 function submitDemoForm(e){e.preventDefault();showToast('Thanks! This demo form is not connected to email yet.');e.target.reset()}
 
+function locateUserTo(url) {
+  window.location.href = url;
+  return;
+}
