@@ -57,9 +57,9 @@
                             <div class="card-body">
                                 <div class="muted">{{ content.date_edited|date:'' }}</div>
                                 <h3>{{ content.title }}</h3>
-                                <p>
-                                    {{ content.content }}
-                                </p>
+                                <div>
+                                    {{ content.content|safe }}
+                                </div>
                                 <!--button class="read-more" onclick="openNews('{{ content.title }}',`{{ content.date_edited|date:'' }}`,'{{ content.content }}')">Read more →</button-->
                                 
                             </div>
