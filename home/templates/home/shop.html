@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Shop - Aps Bomet FC">
   <title>Shop | APS Bomet FC</title>
-  <link rel="stylesheet" href="{% static 'css/styleall.css' %}?v=1.0.1">
+  <link rel="stylesheet" href="{% static 'css/styleall.css' %}?v=1.0.2">
   <link rel="icon" href="https://files.catbox.moe/2ui36x.jpeg"/>
   {% csrf_token %}
   <script src="{% static 'js/script.js' %}"></script>
@@ -88,7 +88,7 @@
             </div>
           </article-->
           <article class="card">
-                            <img style="max-height: 80vh; min-height: 60vh;object-fit: contain; object-position: top center;" class="card-img news-side-img" src="{{ product.img_src.url }}" alt="" onclick="window.location.href='{{ product.img_src.url }}';">
+                            <img style="max-height: 80vh; min-height: 60vh; object-position: top center;" class="card-img news-side-img" src="{{ product.img_src.url }}" alt="" onclick="window.location.href='{{ product.img_src.url }}';">
                             <div class="card-body">
                                 <div class="price-tag">KES {{ product.data_price }} </div>
                                 <h3>{{ product.data_product }}</h3>
@@ -172,16 +172,15 @@
   .price-tag {
   font-weight: 1000;
   font-style: oblique;
-  font-size: 1.4em;
-  border-radius: 5px;
+  font-size: 1.128em;
+  border-radius: 4px;
   padding: 5px;
-  background-color: #d4e20c;
+  background-color: rgba(0,0,0,0.75);
 }
 
 .news-side-img {
   object-fit: cover;
   object-position: top center;
-  width: 70vh;
 }
 .read-more {
   width: 95%;
