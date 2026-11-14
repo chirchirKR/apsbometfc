@@ -51,8 +51,8 @@ footer{background:#041a15;color:white;padding:32px 0 18px}.footer-top{display:fl
 
 .news-side-img {
     object-position: top center;
-    object-fit: contain;
-    background: transparent;
+    min-height: 60vh;
+    max-height: 80vh;
 }
 
 .phone_fieldset {
