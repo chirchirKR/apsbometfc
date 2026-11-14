@@ -88,7 +88,7 @@
             </div>
           </article-->
           <article class="card">
-                            <img class="card-img news-side-img" src="{{ product.img_src.url }}" alt="" onclick="window.location.href='{{ product.img_src.url }}';">
+                            <img style="max-height: 80vh; min-height: 60vh;object-fit: contain; object-position: top center;" class="card-img news-side-img" src="{{ product.img_src.url }}" alt="" onclick="window.location.href='{{ product.img_src.url }}';">
                             <div class="card-body">
                                 <div class="price-tag">KES {{ product.data_price }} </div>
                                 <h3>{{ product.data_product }}</h3>
