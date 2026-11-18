@@ -15,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Product, Order, OrderItem, MpesaPayment
 from .cart import get_cart, save_cart, cart_details
 from .daraja import stk_push, stk_query
+from .email import *
 import logging
 
 logger = logging.getLogger(__name__)
@@ -361,6 +362,7 @@ def mpesa_callback(request):
                         order.public_reference,
                         receipt
                     )
+                    send_payment_confirmation(payment.id)
 
             else:
                 payment.status = MpesaPayment.Status.FAILED
@@ -373,7 +375,7 @@ def mpesa_callback(request):
                     ])
 
             payment.save()
-
+            
         return JsonResponse({
             "ResultCode": 0,
             "ResultDesc": "Accepted"
