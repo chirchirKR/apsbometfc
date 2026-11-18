@@ -31,7 +31,7 @@ def login_view(request):
 def dashboard_view(request):
     return render(request, "loop_auth/dashboard.html")
 
-@require_POST
+#@require_POST
 @login_required
 def logout_view(request):
     logout(request)
