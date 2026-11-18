@@ -5,5 +5,5 @@ from .models import *
 
 admin.site.register(Match)
 admin.site.register(Result)
-admin.site.register(Product)
+#admin.site.register(Product)
 admin.site.register(News)

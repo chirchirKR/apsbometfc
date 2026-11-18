@@ -1,0 +1,14 @@
+{% extends "kits/base.html" %}
+{% block title %}APS Bomet FC Kits{% endblock %}
+{% block content %}
+<section class="hero"><p class="eyebrow">WEAR THE PRIDE</p><h1>APS Bomet FC Kits</h1><p>Official colours. One club. One community.</p></section>
+<div class="section-heading"><h2>Available kits</h2><a href="{% url 'kits:cart' %}">View bag →</a></div>
+<div class="products">
+{% for product in products %}
+  <a class="product-card" href="{% url 'kits:product_detail' product.pk %}">
+    <img src="{{ product.main_image.url }}" alt="{{ product.name }}">
+    <div><h3>{{ product.name }}</h3><p class="price">KSh {{ product.price }}</p><small>{% if product.stock %}In stock: {{ product.stock }}{% else %}Out of stock{% endif %}</small></div>
+  </a>
+{% empty %}<p>No kits are available yet. To be Updated Soon</p>{% endfor %}
+</div>
+{% endblock %}

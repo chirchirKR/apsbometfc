@@ -1,0 +1,28 @@
+{% load static %}
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% if mode == "register" %}Create account{% else %}Log in{% endif %} · APS BOMET FC</title>
+<link rel="stylesheet" href="{% static 'loop_auth/css/auth.css' %}"></head><body>
+<main class="page-shell"><section class="auth-card">
+<header class="brand"><div class="brand-mark"><span></span></div><div><h1>APS BOMET FC</h1><p>Ng'etundo ko Agenge</p></div></header>
+<nav class="tabs"><a class="tab {% if mode == 'login' %}active{% endif %}" href="{% url 'loop_auth:login' %}">Log in</a>
+<a class="tab {% if mode == 'register' %}active{% endif %}" href="{% url 'loop_auth:register' %}">Create account</a></nav>
+<h2>{% if mode == "register" %}Start your first streak{% else %}Welcome back{% endif %}</h2>
+{% if messages %}{% for message in messages %}<div class="notice">{{ message }}</div>{% endfor %}{% endif %}
+<form method="post">{% csrf_token %}
+{% if mode == "login" and next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+{% if mode == "register" %}
+<div class="field"><label for="{{ form.name.id_for_label }}">Your name</label>{{ form.name }}{% for e in form.name.errors %}<small class="error">{{ e }}</small>{% endfor %}</div>
+<div class="field"><label for="{{ form.email.id_for_label }}">Email</label>{{ form.email }}{% for e in form.email.errors %}<small class="error">{{ e }}</small>{% endfor %}</div>
+<div class="field"><label for="{{ form.password1.id_for_label }}">Create a password</label><div class="password-wrap">{{ form.password1 }}<button class="eye" type="button" data-toggle-password aria-label="Show password">◎</button></div><small class="hint">At least 8 characters, including a number.</small>{% for e in form.password1.errors %}<small class="error">{{ e }}</small>{% endfor %}</div>
+<label class="terms">{{ form.terms }}<span>I agree to the <a href="#" onclick="return false">Terms</a> and <a href="#" onclick="return false">Privacy Policy</a></span></label>
+{% for e in form.terms.errors %}<small class="error">{{ e }}</small>{% endfor %}
+{% else %}
+<div class="field"><label for="{{ form.username.id_for_label }}">Email or username</label>{{ form.username }}{% for e in form.username.errors %}<small class="error">{{ e }}</small>{% endfor %}</div>
+<div class="field"><label for="{{ form.password.id_for_label }}">Password</label><div class="password-wrap">{{ form.password }}<button class="eye" type="button" data-toggle-password aria-label="Show password">◎</button></div>{% for e in form.password.errors %}<small class="error">{{ e }}</small>{% endfor %}</div>
+{% endif %}
+{% if form.non_field_errors %}<div class="error-block">{{ form.non_field_errors }}</div>{% endif %}
+<button class="submit" type="submit">{% if mode == "register" %}Create account{% else %}Log in{% endif %}</button></form>
+<p class="switch-copy">{% if mode == "register" %}Already have one? <a href="{% url 'loop_auth:login' %}">Log in</a>{% else %}Don't have an account? <a href="{% url 'loop_auth:register' %}">Create account</a>{% endif %}</p>
+<p class="demo-note">Your account is securely stored.</p></section></main>
+<script src="{% static 'loop_auth/js/auth.js' %}"></script></body></html>

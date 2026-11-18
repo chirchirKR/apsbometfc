@@ -1,0 +1,22 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}APS Bomet FC Shop{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'kits/shop.css' %}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{% url 'kits:catalogue' %}"><span class="brand-mark">APS</span><span> BOMET FC <small>OFFICIAL KIT SHOP</small></span></a>
+  <nav><a href="{% url 'homeApp:home' %}">Home</a><a href="{% url 'kits:catalogue' %}">Shop</a><a href="{% url 'kits:cart' %}">Bag</a></nav>
+</header>
+<main class="container">
+  {% if messages %}<div class="messages">{% for message in messages %}<p class="{{ message.tags }}">{{ message }}</p>{% endfor %}</div>{% endif %}
+  {% block content %}{% endblock %}
+</main>
+<footer>APS Bomet FC · Official Kit Shop</footer>
+{% block scripts %}{% endblock %}
+</body>
+</html>

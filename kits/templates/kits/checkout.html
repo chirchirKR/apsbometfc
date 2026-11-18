@@ -1,0 +1,23 @@
+{% extends "kits/base.html" %}
+{% block title %}Checkout | APS Bomet FC{% endblock %}
+{% block content %}
+<h1>Checkout</h1>
+<div class="checkout-grid">
+<form method="post" class="checkout-form">
+  {% csrf_token %}
+  <h2>Delivery details</h2>
+  <label>Full name</label><input name="customer_name" required maxlength="160">
+  <label>Email (optional)</label><input type="email" name="email" {% if request.user.email %} value="{{ request.user.email }}" {% endif %}>
+  <label>M-Pesa phone number</label><input name="phone" required placeholder="0712345678" inputmode="tel">
+  <label>County</label><input name="county" placeholder="Bomet">
+  <label>Delivery address / collection point</label><textarea name="delivery_address" rows="3" required></textarea>
+  <label>Additional notes (optional)</label><textarea name="notes" rows="2"></textarea>
+  <button class="primary full" type="submit">Place order & pay with M-Pesa</button>
+  <p class="hint">An M-Pesa prompt will be sent to the phone number above. Enter your PIN on your phone to complete payment.</p>
+</form>
+<aside class="summary"><h2>Order summary</h2>
+{% for row in rows %}<p>{{ row.product.name }} · {{ row.size }} × {{ row.quantity }} <strong>KSh {{ row.line_total }}</strong></p>{% endfor %}
+<div class="total-line"><span>Total to pay</span><strong>KSh {{ total }}</strong></div>
+</aside>
+</div>
+{% endblock %}

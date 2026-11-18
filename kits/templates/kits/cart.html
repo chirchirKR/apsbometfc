@@ -1,0 +1,20 @@
+{% extends "kits/base.html" %}
+{% block title %}Your Bag | APS Bomet FC{% endblock %}
+{% block content %}
+<h1>Your shopping bag</h1>
+{% if rows %}
+<div class="cart-list">
+{% for row in rows %}
+  <article class="cart-row">
+    <img src="{{ row.product.main_image.url }}" alt="{{ row.product.name }}">
+    <div class="cart-description"><h3>{{ row.product.name }}</h3><p>Size: {{ row.size }} · KSh {{ row.unit_price }} each</p>
+      <form method="post" action="{% url 'kits:update_cart' row.key %}" class="inline-form">{% csrf_token %}<input type="number" name="quantity" value="{{ row.quantity }}" min="1" max="20"><button class="secondary">Update</button></form>
+      <form method="post" action="{% url 'kits:remove_from_cart' row.key %}">{% csrf_token %}<button class="link-button">Remove</button></form>
+    </div><strong>KSh {{ row.line_total }}</strong>
+  </article>
+{% endfor %}
+</div>
+<div class="total-line"><span>Total</span><strong>KSh {{ total }}</strong></div>
+<a class="primary button-link" href="{% url 'kits:checkout' %}">Proceed to checkout</a>
+{% else %}<p>Your bag is empty.</p><a class="primary button-link" href="{% url 'kits:catalogue' %}">Browse kits</a>{% endif %}
+{% endblock %}

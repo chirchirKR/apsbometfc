@@ -19,10 +19,16 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
+handler400 = "errors.views.bad_request"
+handler403 = "errors.views.permission_denied"
+handler404 = "errors.views.page_not_found"
+handler500 = "errors.views.server_error"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("home.urls", namespace="homeApp")),
-    #path("mpesa/", include("payments.urls")),
+    path("kits/", include("kits.urls")),
+    path("user/", include("loop_auth.urls")),
 ]
 
 if settings.DEBUG:

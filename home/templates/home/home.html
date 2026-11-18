@@ -23,9 +23,11 @@
     <nav class="nav-links" id="navLinks" aria-label="Main navigation">
       <a class="active" href="{% url 'homeApp:home' %}">Home</a><a href="{% url 'homeApp:shop' %}">Shop</a><a href="{% url 'homeApp:team' %}">Team</a>
       <a href="{% url 'homeApp:matches' %}">Matches</a><a href="{% url 'homeApp:news' %}">News</a><a href="{% url 'homeApp:about' %}">About</a><a href="{% url 'homeApp:contact' %}">Contact</a>
-      <!--{% if not request.user.is_authenticated %}
-      <a href="">Sign Up</a>
-      {% endif %}-->
+      {% if not request.user.is_authenticated %}
+      <a href="{% url 'loop_auth:register' %}">Sign Up</a>
+      {% else %}
+      <a href="{% url 'loop_auth:logout' %}">Log Out - {{ request.user.username }}</a>
+      {% endif %}
     </nav>
     <div class="nav-actions">
       <!--button class="icon-btn search-btn" aria-label="Search" onclick="locateUserTo('')">Sign In</button>
@@ -59,13 +61,13 @@
       
       {% for product in products %}
       
-      <article class="product" data-product="{{ product.data_product }}" data-price="{{ product.data_price }}">
+      <article class="product" data-product="{{ product.name }}" data-price="{{ product.price }}">
         <div class="product-art">
-          <img src="{{ product.img_src.url }}" onclick="window.location.href='{{ product.img_src.url }}';">
+          <img src="{{ product.main_image.url }}" onclick="window.location.href='{{ product.main_image.url }}';">
         </div>
-        <span class="product-tag">{{ product.data_product }}</span>
-        <h3>{{ product.data_details }}</h3>
-        <div class="product-price">KES {{ product.data_price }}</div>
+        <span class="product-tag">{{ product.name }}</span>
+        <h3>{{ product.description }}</h3>
+        <div class="product-price">KES {{ product.price }}</div>
         <!--div class="product-bottom">
           <div class="sizes" aria-label="Choose size">
             <button class="size-btn" data-size="S">S</button>

@@ -36,6 +36,7 @@ class Result(models.Model):
     def __str__(self):
         return f"{self.home_team.upper()} VS {self.away_team.upper()}"
 
+"""
 class Product(models.Model):
     data_product = models.CharField(max_length=30)
     data_price = models.PositiveIntegerField()
@@ -48,7 +49,8 @@ class Product(models.Model):
 
     def splitSize(self):
         return self.sizes.split(',')
-        
+"""
+
 class News(models.Model):
     title = models.CharField(max_length=101)
     img_src = models.ImageField(upload_to="media/")
@@ -58,6 +60,7 @@ class News(models.Model):
     def __str__(self):
         return self.title.upper()
 
+"""
 class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)       
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -65,7 +68,7 @@ class Payment(models.Model):
     payed = models.DecimalField(decimal_places=2, max_digits=10)
     phone_number = models.PositiveIntegerField()
     date_payed = models.DateTimeField(auto_now_add=True)
-    
+"""    
 User = get_user_model()
 
 

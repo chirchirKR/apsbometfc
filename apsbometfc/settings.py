@@ -25,14 +25,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / ".env")
 
-
+"""
 MPESA_ENVIRONMENT = os.getenv("MPESA_ENV", "sandbox").strip().lower()
 MPESA_CONSUMER_KEY = os.getenv("MPESA_CONSUMER_KEY", "").strip()
 MPESA_CONSUMER_SECRET = os.getenv("MPESA_CONSUMER_SECRET", "").strip()
 MPESA_EXPRESS_SHORTCODE = os.getenv("MPESA_SHORTCODE", "").strip()
 MPESA_PASSKEY = os.getenv("MPESA_PASSKEY", "").strip()
 MPESA_CALLBACK_URL = os.getenv("MPESA_CALLBACK_URL", "").strip()
-
+"""
+MPESA_ENV = os.getenv("MPESA_ENV", "sandbox")
+MPESA_CONSUMER_KEY = os.getenv("MPESA_CONSUMER_KEY", "")
+MPESA_CONSUMER_SECRET = os.getenv("MPESA_CONSUMER_SECRET", "")
+MPESA_SHORTCODE = os.getenv("MPESA_SHORTCODE", "174379")
+MPESA_PASSKEY = os.getenv("MPESA_PASSKEY", "")
+MPESA_CALLBACK_URL = os.getenv("MPESA_CALLBACK_URL", "")
+MPESA_TRANSACTION_TYPE = os.getenv("MPESA_TRANSACTION_TYPE", "CustomerPayBillOnline")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
@@ -40,17 +47,21 @@ MPESA_CALLBACK_URL = os.getenv("MPESA_CALLBACK_URL", "").strip()
 SECRET_KEY = 'django-insecure-#rcy%hb+ul644vl%x%v94u%zu!__g5mebd#j8h#q10&fun^kot'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = False #os.environ.get('DEBUG', 'False') == 'True'
 
 CSRF_TRUSTED_ORIGINS = [
     "https://defacing-murmuring-devourer.ngrok-free.dev",
+    "https://music-lamps-donor-take.trycloudflare.com",
+    "https://formula-pda-flower-the.trycloudflare.com",
 ]
 
 ALLOWED_HOSTS = [
     "192.168.137.212",
     "127.0.0.1",
     "localhost",
-    "defacing-murmuring-devourer.ngrok-free.dev"
+    "defacing-murmuring-devourer.ngrok-free.dev",
+    "music-lamps-donor-take.trycloudflare.com",
+    "formula-pda-flower-the.trycloudflare.com"
 ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get(
@@ -71,7 +82,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'home',
-    'django_daraja'
+    'django_daraja',
+    'kits',
+    'loop_auth',
+    'errors',
 ]
 
 MIDDLEWARE = [
@@ -109,7 +123,6 @@ WSGI_APPLICATION = 'apsbometfc.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
 """
 DATABASES = {
     'default': {
@@ -117,37 +130,20 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+"""
 
-"""
-"""
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT", "5432"),
+        "NAME": os.getenv("DB_NAME").strip(),
+        "USER": os.getenv("DB_USER").strip(),
+        "PASSWORD": os.getenv("DB_PASSWORD").strip(),
+        "HOST": os.getenv("DB_HOST").strip(),
+        "PORT": os.getenv("DB_PORT", "5432").strip(),
         "OPTIONS": {
             "sslmode": "require",
         },
     }
-}
-
-"""
-
-DATABASES = {  
-    "default": {  
-        "ENGINE": "django.db.backends.postgresql",  
-        "NAME": "postgres",  
-        "USER": "postgres.rgxdpuseotokkspbbeew",  
-        "PASSWORD": "P@$$word!_962113017",  
-        "HOST": "aws-1-eu-west-3.pooler.supabase.com",  
-        "PORT": "5432",  
-        "OPTIONS": {  
-            "sslmode": "require",  
-        },  
-    }  
 }
 
 

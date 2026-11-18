@@ -1,0 +1,48 @@
+{% extends "kits/base.html" %}
+{% block title %}{{ product.name }} | APS Bomet FC{% endblock %}
+{% block content %}
+<div class="crumb"><a href="{% url 'kits:catalogue' %}">Shop</a> / {{ product.name }}</div>
+<div class="detail-grid">
+  <section>
+    <div class="main-photo-wrap"><img id="mainPhoto" class="main-photo" src="{{ product.main_image.url }}" alt="{{ product.name }}"></div>
+    <div class="thumbs">
+      <button type="button" class="thumb active" data-src="{{ product.main_image.url }}"><img src="{{ product.main_image.url }}" alt="Front view"></button>
+      {% for photo in product.gallery.all %}
+      <button type="button" class="thumb" data-src="{{ photo.image.url }}"><img src="{{ photo.image.url }}" alt="{{ photo.alt_text|default:product.name }}"></button>
+      {% endfor %}
+    </div>
+  </section>
+  <section class="product-info">
+    <p class="eyebrow">APS BOMET FC · OFFICIAL MERCHANDISE</p>
+    <h1>{{ product.name }}</h1>
+    <p class="price large">KSh {{ product.price }}</p>
+    <p class="stock">{% if product.stock %}{{ product.stock }} available{% else %}Currently out of stock{% endif %}</p>
+    <p class="description">{{ product.description|linebreaksbr }}</p>
+    {% if product.stock %}
+    <form method="post" action="{% url 'kits:add_to_cart' product.pk %}" class="buy-form">
+      {% csrf_token %}
+      <label>Size</label>
+      <div class="sizes">
+        {% for size in product.size_list %}<label class="size-option"><input type="radio" name="size" value="{{ size }}" {% if forloop.first %}checked{% endif %}><span>{{ size }}</span></label>{% endfor %}
+      </div>
+      <label for="quantity">Quantity</label>
+      <input id="quantity" type="number" name="quantity" value="1" min="1" max="20" class="quantity">
+      <button class="primary full" type="submit">Add to bag</button>
+    </form>
+    {% endif %}
+    <div class="shipping-note">Delivery arrangements confirmed after checkout.</div>
+    <div class="shipping-note">Secure M-Pesa checkout through Safaricom.</div>
+  </section>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+document.querySelectorAll(".thumb").forEach(button => {
+  button.addEventListener("click", () => {
+    document.getElementById("mainPhoto").src = button.dataset.src;
+    document.querySelectorAll(".thumb").forEach(item => item.classList.remove("active"));
+    button.classList.add("active");
+  });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "kits/base.html" %}
+{% block title %}Order {{ order.public_reference }} | APS Bomet FC{% endblock %}
+{% block content %}
+<div class="status-card">
+  <p class="eyebrow">ORDER {{ order.public_reference }}</p>
+  <h1 id="statusTitle">{% if order.status == "paid" %}Payment received{% elif order.status == "failed" %}Payment not completed{% else %}Waiting for M-Pesa confirmation{% endif %}</h1>
+  <p id="statusMessage">{% if payment %}{{ payment.result_description }}{% endif %}</p>
+  <p>Amount: <strong>KSh {{ order.total_amount }}</strong></p>
+  <p>Phone: {{ order.phone }}</p>
+  <p>Order status: <strong id="orderStatus">{{ order.get_status_display }}</strong></p>
+  <p id="receipt">{% if payment.mpesa_receipt %}M-Pesa receipt: <strong style="color: limegreen;">{{ payment.mpesa_receipt }}</strong>{% endif %}</p>
+  <p class="hint">Keep this order reference for enquiries. APS Bomet FC will arrange delivery or collection after payment is confirmed.</p>
+  <a class="secondary button-link" href="{% url 'kits:catalogue' %}">Continue shopping</a>
+</div>
+{% endblock %}
+{% block scripts %}
+{% if order.status == "pending" %}
+<script>
+const statusUrl = "{% url 'kits:order_status_json' order.number %}";
+async function checkPayment() {
+  try {
+    const response = await fetch(statusUrl, {headers: {"X-Requested-With": "XMLHttpRequest"}});
+    const data = await response.json();
+    document.getElementById("orderStatus").textContent = data.order_status;
+    document.getElementById("statusMessage").textContent = data.message || "";
+    if (data.order_status === "paid") {
+      document.getElementById("statusTitle").textContent = "Payment received";
+      document.getElementById("receipt").textContent = data.receipt ? "M-Pesa receipt: " + data.receipt : "";
+    } else if (data.order_status === "failed") {
+      document.getElementById("statusTitle").textContent = "Payment not completed";
+    } else {
+      setTimeout(checkPayment, 5000);
+    }
+  } catch (error) { setTimeout(checkPayment, 8000); }
+}
+setTimeout(checkPayment, 5000);
+</script>
+{% endif %}
+{% endblock %}
