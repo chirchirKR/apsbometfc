@@ -101,7 +101,7 @@ def remove_from_cart(request, key):
     save_cart(request, cart)
     return redirect("kits:cart")
 
-@login_required
+#@login_required
 def checkout(request):
     rows, total = cart_details(request)
     if not rows:
