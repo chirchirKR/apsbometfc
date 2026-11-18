@@ -362,7 +362,7 @@ def mpesa_callback(request):
                         order.public_reference,
                         receipt
                     )
-                    send_payment_confirmation(payment.id)
+                    #send_payment_confirmation(payment.id)
 
             else:
                 payment.status = MpesaPayment.Status.FAILED
