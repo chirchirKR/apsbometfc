@@ -53,6 +53,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://defacing-murmuring-devourer.ngrok-free.dev",
     "https://music-lamps-donor-take.trycloudflare.com",
     "https://formula-pda-flower-the.trycloudflare.com",
+    "https://apsbometfc.onrender.com",
 ]
 
 ALLOWED_HOSTS = [
@@ -61,7 +62,8 @@ ALLOWED_HOSTS = [
     "localhost",
     "defacing-murmuring-devourer.ngrok-free.dev",
     "music-lamps-donor-take.trycloudflare.com",
-    "formula-pda-flower-the.trycloudflare.com"
+    "formula-pda-flower-the.trycloudflare.com",
+    "apsbometfc.onrender.com",
 ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get(
