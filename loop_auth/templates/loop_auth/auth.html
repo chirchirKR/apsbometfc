@@ -7,7 +7,7 @@
 <header class="brand"><div class="brand-mark"><span></span></div><div><h1>APS BOMET FC</h1><p>Ng'etundo ko Agenge</p></div></header>
 <nav class="tabs"><a class="tab {% if mode == 'login' %}active{% endif %}" href="{% url 'loop_auth:login' %}">Log in</a>
 <a class="tab {% if mode == 'register' %}active{% endif %}" href="{% url 'loop_auth:register' %}">Create account</a></nav>
-<h2>{% if mode == "register" %}Start your first streak{% else %}Welcome back{% endif %}</h2>
+<h2>{% if mode == "register" %}Be a registered Fan{% else %}Welcome back{% endif %}</h2>
 {% if messages %}{% for message in messages %}<div class="notice">{{ message }}</div>{% endfor %}{% endif %}
 <form method="post">{% csrf_token %}
 {% if mode == "login" and next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
